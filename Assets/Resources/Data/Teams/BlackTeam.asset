@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd6e21b43c25f54bb3d58cb2fa99e96, type: 3}
+  m_Name: BlackTeam
+  m_EditorClassIdentifier: 
+  color: 1
+  chessmanList:
+  - type: {fileID: 11400000, guid: 31dba66994730e944887e3ce33483e34, type: 2}
+    startingPosition:
+    - posX: 6
+      posZ: 0
+    - posX: 6
+      posZ: 1
+    - posX: 6
+      posZ: 2
+    - posX: 6
+      posZ: 3
+    - posX: 6
+      posZ: 4
+    - posX: 6
+      posZ: 5
+    - posX: 6
+      posZ: 6
+    - posX: 6
+      posZ: 7
+    YrotationDegrees: -90
+  - type: {fileID: 11400000, guid: 4a3aa9c455cdb5b409408b79c908a7fb, type: 2}
+    startingPosition:
+    - posX: 7
+      posZ: 0
+    - posX: 7
+      posZ: 7
+    YrotationDegrees: -90
+  - type: {fileID: 11400000, guid: 339018f6295cbc24caab97b3330eb879, type: 2}
+    startingPosition:
+    - posX: 7
+      posZ: 1
+    - posX: 7
+      posZ: 6
+    YrotationDegrees: -90
+  - type: {fileID: 11400000, guid: 521176d40daa80142a4ba20a1bef4c1c, type: 2}
+    startingPosition:
+    - posX: 7
+      posZ: 2
+    - posX: 7
+      posZ: 5
+    YrotationDegrees: -90
+  - type: {fileID: 11400000, guid: 7edd5613d4c472a479cd71f74e7d35e4, type: 2}
+    startingPosition:
+    - posX: 7
+      posZ: 3
+    YrotationDegrees: -90
+  - type: {fileID: 11400000, guid: 04f06ecd0dc1eab4a80aeac3058a262f, type: 2}
+    startingPosition:
+    - posX: 7
+      posZ: 4
+    YrotationDegrees: -90
