@@ -14,3 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name:
     chessmanPrefab: {fileID: 103078, guid: 8832f215d7ce1a5429debbe5aacd8f51, type: 3}
+    movePatterns:
+    - posX: 8
+      posZ: 0
+    - posX: -8
+      posZ: 0
+    - posX: 0
+      posZ: 8
+    - posX: 0
+      posZ: -8
+    - posX: 8
+      posZ: 8
+    - posX: 8
+      posZ: -8
+    - posX: -8
+      posZ: 8
+    - posX: -8
+      posZ: -8
+  CanMoveAcrossTheLine: 1

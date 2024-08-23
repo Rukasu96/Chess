@@ -19,3 +19,5 @@ MonoBehaviour:
   width: 8
   height: 8
   tileOffsetPosition: 1.25
+  BoardPositionX: 4
+  BoardPositionZ: 4

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IHoveredSelector
 {
-    bool IsObjectHovered(Ray ray, out ISelectable LocalSelectable);
+    bool IsObjectHovered(out ISelectable LocalSelectable);
     Transform GetHoveredObject();
 }

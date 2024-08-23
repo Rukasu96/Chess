@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name:
     chessmanPrefab: {fileID: 114028, guid: 28f37af186f89084582f19dba50c9fc7, type: 3}
-    movePatterns: []
+    movePatterns:
+    - posX: 8
+      posZ: 8
+  CanMoveAcrossTheLine: 0

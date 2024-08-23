@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class TurnController : MonoBehaviour
 {
-    [SerializeField] private TeamSettings[] teamsOrder;
-    private TeamColor activePlayer;
-    private int playerIndex;
+    private int playerIndex = 0;
 
-    private void Start()
+    public TeamColor ChangePlayer(TeamSettings[] teamsOrder)
     {
-        playerIndex = 0;
-        activePlayer = teamsOrder[playerIndex].teamColor;
-    }
-    private void ChangePlayer()
-    {
-        if(playerIndex >= teamsOrder.Length)
+        if(playerIndex >= teamsOrder.Length - 1)
             playerIndex = 0;
         else
             playerIndex++;
 
-        activePlayer = teamsOrder[playerIndex].teamColor;
+        return teamsOrder[playerIndex].teamColor;
     }
 }

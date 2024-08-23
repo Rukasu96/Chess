@@ -1,21 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectorChangingPlayerState : SelectorBaseState
 {
-    public override void EnterState(SelectorStateManager selectorManager)
+    public SelectorChangingPlayerState(BoardManager board, IHoveredSelector hoveredSelector) : base(board, hoveredSelector)
     {
-        throw new System.NotImplementedException();
+    }
+
+    public override void EnterState()
+    {
+        //Dodaæ jakiœ panel z nazw¹ kto teraz gra
     }
 
     public override void HoverObject()
     {
-        throw new System.NotImplementedException();
     }
 
-    public override void UpdateState(SelectorStateManager selectorManager)
+    public override Type UpdateState()
     {
-        throw new System.NotImplementedException();
+        if(boardManager.IsRotationFinish())
+        {
+            return typeof(SelectorChooseChessmanState);
+        }
+        return null;
     }
 }

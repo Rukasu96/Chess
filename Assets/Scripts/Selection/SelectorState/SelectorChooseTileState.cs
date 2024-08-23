@@ -1,32 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectorChooseTileState : SelectorBaseState
 {
-    private Chessman selectedChessman;
-    public override void EnterState(SelectorStateManager selectorManager)
+    private ISelectable selectable;
+    private Tile hoveredTile;
+
+    public SelectorChooseTileState(BoardManager boardManager, IHoveredSelector hoverSelector) : base(boardManager, hoverSelector)
     {
-        board = selectorManager.Board;
-        rayProvider = selectorManager.RayProvider;
-        hoveredSelector = selectorManager.HoveredSelector;
-        selectedChessman = selectorManager.SelectedChessman;
-        board.ChangeTileColor(selectedChessman, Color.green);
     }
-    public override void UpdateState(SelectorStateManager selectorManager)
+
+    public override void EnterState()
+    {
+    }
+
+    public override Type UpdateState()
     {
         HoverObject();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && hoveredTile != null)
         {
             SelectTileToMove();
-            selectorManager.SwitchState(selectorManager.ChooseChessmanState);
+            return typeof(SelectorChangingPlayerState);
         }
+        else if(Input.GetMouseButtonDown(1))
+        {
+            BackToDefault();
+            return typeof(SelectorChooseChessmanState);
+        }
+        return null;
     }
+
     public override void HoverObject()
     {
-        if (hoveredSelector.IsObjectHovered(rayProvider.CreateRay(), out ISelectable localSelectable) && selectable != localSelectable)
+        if (hoveredSelector.IsObjectHovered(out ISelectable localSelectable) && selectable != localSelectable)
         {
-            if (hoveredSelector.GetHoveredObject().GetComponent<Tile>())
+            selectable = hoveredSelector.GetHoveredObject().GetComponent<ISelectable>();
+            hoveredTile = hoveredSelector.GetHoveredObject().GetComponent<Tile>();
+
+            if (hoveredTile)
             {
                 selectable = localSelectable;
                 selectable.OnHover();
@@ -36,13 +49,13 @@ public class SelectorChooseTileState : SelectorBaseState
         {
             selectable.OnNotHover();
             selectable = null;
+            hoveredTile = null;
         }
     }
+
     private void SelectTileToMove()
     {
-        Tile tile = hoveredSelector.GetHoveredObject().GetComponent<Tile>();
-        board.ChangeTileColor(selectedChessman, Color.white);
-        board.UpdateBoard(tile, selectedChessman);
+        SelectTile(hoveredTile);
         selectable.OnNotHover();
     }
 }

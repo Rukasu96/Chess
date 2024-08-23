@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd6e21b43c25f54bb3d58cb2fa99e96, type: 3}
   m_Name: WhiteTeam
   m_EditorClassIdentifier: 
-  color: 0
+  teamColor: 0
   chessmanList:
   - type: {fileID: 11400000, guid: 8f3bbb8d4293a8e43b9349b74fe0f2c3, type: 2}
     startingPosition:

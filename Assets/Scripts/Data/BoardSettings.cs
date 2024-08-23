@@ -10,4 +10,6 @@ public class BoardSettings : ScriptableObject
     public int width;
     public int height;
     public float tileOffsetPosition;
+    public float BoardPositionX;
+    public float BoardPositionZ;
 }

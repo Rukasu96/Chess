@@ -12,4 +12,5 @@ public struct Name
 public class ChessmanSettings : ScriptableObject
 {
     public Name Name;
+    public bool CanMoveAcrossTheLine;
 }

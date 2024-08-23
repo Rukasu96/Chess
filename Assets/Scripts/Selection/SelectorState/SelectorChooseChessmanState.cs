@@ -1,36 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SelectorChooseChessmanState : SelectorBaseState
 {
-    private int highlightedChessmanIndex = 0;
-    private int hoveredChessmanIndex = 0;
+    private int highlightedChessmanIndex;
+    private int hoveredChessmanIndex;
     private Chessman hoveredChessman;
-    public override void EnterState(SelectorStateManager selectorManager)
+
+    private ISelectable selectable;
+
+    public SelectorChooseChessmanState(BoardManager board, IHoveredSelector hoverSelector) : base(board,hoverSelector)
     {
-        board = selectorManager.Board;
-        rayProvider = selectorManager.RayProvider;
-        hoveredSelector = selectorManager.HoveredSelector;
-        highlightedChessmanIndex = 0;
-        highlightedChessmanIndex = 0;
     }
-    public override void UpdateState(SelectorStateManager selectorManager)
+
+    public override void EnterState()
+    {
+        highlightedChessmanIndex = 0;
+        hoveredChessmanIndex = 0;
+    }
+
+    public override Type UpdateState()
     {
         HoverObject();
-        if(Input.GetMouseButtonDown(0) && selectable != null)
+        if (Input.GetMouseButtonDown(0) && selectable != null)
         {
-            selectorManager.SelectedChessman = hoveredChessman;
+            SelectChessman(hoveredChessman);
             selectable.OnHover();
-            selectorManager.SwitchState(selectorManager.ChooseTileState);
+            return typeof(SelectorChooseTileState);
         }
+        return null;
     }
+
     public override void HoverObject()
     {
-        if (hoveredSelector.IsObjectHovered(rayProvider.CreateRay(), out var LocalSelectable) && selectable != LocalSelectable)
+        if (hoveredSelector.IsObjectHovered(out var LocalSelectable) && selectable != LocalSelectable)
         {
             hoveredChessman = hoveredSelector.GetHoveredObject().GetComponent<Chessman>();
-            hoveredChessmanIndex = board.GetChessmanIndex(hoveredChessman);
+
+            if (!boardManager.CheckChessmanTeamColor(hoveredChessman))
+            {
+                if(selectable  != null)
+                {
+                    selectable.OnNotHover();
+                    selectable = null;
+                }
+                hoveredChessman = null;
+                return;
+            }
+
+            hoveredChessmanIndex = boardManager.GetChessmanIndex(hoveredChessman);
 
             if (selectable != null && hoveredChessmanIndex != highlightedChessmanIndex)
             {
@@ -38,7 +56,7 @@ public class SelectorChooseChessmanState : SelectorBaseState
             }
 
             selectable = LocalSelectable;
-            highlightedChessmanIndex = board.GetChessmanIndex(hoveredChessman);
+            highlightedChessmanIndex = hoveredChessmanIndex;
             selectable.OnHover();
         }
         else if (selectable != null && LocalSelectable == null)

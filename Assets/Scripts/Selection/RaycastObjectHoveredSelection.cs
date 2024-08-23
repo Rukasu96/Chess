@@ -7,8 +7,9 @@ public class RaycastObjectHoveredSelection : MonoBehaviour, IHoveredSelector
     [SerializeField] private string selectableTag = "Selectable";
     private Transform hoveredObject;
 
-    public bool IsObjectHovered(Ray ray, out ISelectable LocalSelectable)
+    public bool IsObjectHovered(out ISelectable LocalSelectable)
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit))
         {
             if (hit.transform.CompareTag(selectableTag))
