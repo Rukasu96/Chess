@@ -45,7 +45,11 @@ public class MoveManager : MonoBehaviour
         availableTiles = currentChessman.GetAvailableTilesToMove();
         boardManager.ChangeBoardTileColor(availableTiles);
     }
-    //Zbijanie figur
+
+    /*private List<Tile> ReturnChessmanAvailableTilesToMove()
+    {
+
+    }*/
     //roszady
 
 }

@@ -5,5 +5,6 @@ using UnityEngine;
 interface IBonusMoveable
 {
     bool IsOnStartingPosition();
-    Tile AddBonusTileToMove();
+    bool UsedBonusMove();
+    Tile ReturnBonusTile();
 }

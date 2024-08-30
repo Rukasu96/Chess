@@ -31,4 +31,6 @@ MonoBehaviour:
       posZ: 1
     - posX: 1
       posZ: -1
-  CanMoveAcrossTheLine: 0
+    IsMovingFullHorizontalAndVertical: 0
+    IsMovingFullSidelong: 0
+    IsKing: 1

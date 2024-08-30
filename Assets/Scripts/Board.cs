@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Board : MonoBehaviour
     [SerializeField] BoardSettings settings;
     private Tile[][] chessBoard;
     private GameObject boardParent;
+    private List<Chessman> chessmanList = new List<Chessman>();
     public TeamSettings[] TeamSettings => settings.teamSettings;
     public GameObject BoardParent => boardParent;
 
@@ -83,6 +85,7 @@ public class Board : MonoBehaviour
                     chessman.UpdatePositionOnGrid(typePos.posX, typePos.posZ);
                     
                     tile.Chessman = chessman;
+                    chessmanList.Add(chessman);
                     settings.teamSettings[i].ChessmanDictionary.Add(tile.Chessman, chessmanIndex);
                     chessmanIndex++;
                 }
@@ -122,25 +125,87 @@ public class Board : MonoBehaviour
 
     public void ChangeTileColor(List<Tile> availableTiles, TeamColor activePlayer)
     {
+
         foreach (Tile tile in availableTiles)
         {
+            Tile tileWithChessmanBonusMove;
+
+            if (activePlayer == TeamColor.white)
+            {
+                tileWithChessmanBonusMove = ReturnTile(tile.PositionOnGrid.posX + 1, tile.PositionOnGrid.posZ);
+            }
+            else
+            {
+                tileWithChessmanBonusMove = ReturnTile(tile.PositionOnGrid.posX - 1, tile.PositionOnGrid.posZ);
+            }
+
             tile.tag = tile.tag != "Selectable" ? "Selectable" : "Untagged";
 
-            if (tile.CompareTag("Selectable") && tile.Chessman != null)
-            {
-                tile.ChangeColor(Color.red);
-            }else if (tile.CompareTag("Selectable"))
+            if (tile.CompareTag("Selectable"))
             {
                 tile.ChangeColor(Color.green);
+
+                if (tile.Chessman != null)
+                {
+                    tile.ChangeColor(Color.red);
+                }
+                else if (tileWithChessmanBonusMove.HasBonusMoveableChessman())
+                {
+                    if(activePlayer != tileWithChessmanBonusMove.teamColor)
+                    {
+                        tile.ChangeColor(Color.red);
+                    }
+                }
             }
             else
                 tile.BackToDefaultColor();
+
+            Debug.Log(tile.Chessman);
         }
     }
 
     public void UpdateBoard(Tile selectedTile, Chessman selectedChessman)
     {
         Tile previousTile = ReturnTile(selectedChessman.GetPosition().posX, selectedChessman.GetPosition().posZ);
+        Chessman enemyChessman = selectedTile.Chessman;
+
+        Tile tileWithChessmanBonusMove;
+
+        if (selectedChessman.GetTeamColor() == TeamColor.white)
+        {
+            tileWithChessmanBonusMove = ReturnTile(selectedTile.PositionOnGrid.posX + 1, selectedTile.PositionOnGrid.posZ);
+        }
+        else
+        {
+            tileWithChessmanBonusMove = ReturnTile(selectedTile.PositionOnGrid.posX - 1, selectedTile.PositionOnGrid.posZ);
+        }
+
+        if (enemyChessman != null)
+        {
+            selectedTile.Chessman = null;
+            chessmanList.Remove(enemyChessman);
+            Destroy(enemyChessman.gameObject);
+        }
+        else if (tileWithChessmanBonusMove.HasBonusMoveableChessman())
+        {
+            Tile tileWithChessman;
+            tileWithChessmanBonusMove.RemovebonusMoveableChessman();
+
+            if (selectedChessman.GetTeamColor() == TeamColor.white)
+            {
+                tileWithChessman = ReturnTile(selectedTile.PositionOnGrid.posX - 1, selectedTile.PositionOnGrid.posZ);
+            }
+            else
+            {
+                tileWithChessman = ReturnTile(selectedTile.PositionOnGrid.posX + 1, selectedTile.PositionOnGrid.posZ);
+            }
+
+            enemyChessman = tileWithChessman.Chessman;
+            tileWithChessman.Chessman = null;
+            chessmanList.Remove(enemyChessman);
+            Destroy(enemyChessman.gameObject);
+        }
+
         previousTile.Chessman = null;
         selectedTile.Chessman = selectedChessman;
     }

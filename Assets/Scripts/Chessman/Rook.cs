@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class Rook : Chessman
 {
+    private PositionOnGrid startingPosition;
+
+    private void Start()
+    {
+        startingPosition = position;
+    }
+
     public override List<Tile> GetAvailableTilesToMove()
     {
         return ReturnAvailableHorizontalAndVerticalTiles();
@@ -17,12 +24,11 @@ public class Rook : Chessman
         Tile availableTile;
         int modifierX = 1;
         int modifierZ = 0;
-        int positionValue = position.posX;
         int movePatternValue = movePatterns[0].posX;
 
         for (int i = 0; i < 4; i++)
         {
-            for (int x = positionValue; x < movePatternValue; x++)
+            for (int x = 0; x < movePatternValue; x++)
             {
                 if (i == 0 || i == 2)
                 {
@@ -71,7 +77,6 @@ public class Rook : Chessman
             else if (i >= 1)
             {
                 modifierZ = 1;
-                positionValue = position.posZ;
                 movePatternValue = movePatterns[0].posZ;
             }
             else

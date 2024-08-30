@@ -17,4 +17,6 @@ MonoBehaviour:
     movePatterns:
     - posX: 8
       posZ: 8
-  CanMoveAcrossTheLine: 1
+    IsMovingFullHorizontalAndVertical: 1
+    IsMovingFullSidelong: 0
+    IsKing: 0

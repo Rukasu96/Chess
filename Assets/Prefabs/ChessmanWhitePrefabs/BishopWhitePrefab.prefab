@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3340028}
   - component: {fileID: 2380346}
   - component: {fileID: 6484090}
-  - component: {fileID: 3006900996489992512}
   - component: {fileID: 1381535416460329754}
+  - component: {fileID: 4639177316923975317}
   m_Layer: 0
   m_Name: BishopWhitePrefab
   m_TagString: Selectable
@@ -109,19 +109,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1e1130c2d0732f44eb82b057a9dcf58b, type: 3}
---- !u!114 &3006900996489992512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f27e9031c143004ba1d44aee6d96a3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chessmanSO: {fileID: 11400000, guid: c7909cfbde0b48d41af591f38c799a61, type: 2}
 --- !u!114 &1381535416460329754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +121,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b31b805223aae4cba90c7a07108e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4639177316923975317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085dc3013fb4d1f49a57d14870077953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chessmanSO: {fileID: 11400000, guid: c7909cfbde0b48d41af591f38c799a61, type: 2}
+  boardManager: {fileID: 0}

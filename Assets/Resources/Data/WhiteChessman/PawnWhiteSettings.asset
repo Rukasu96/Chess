@@ -17,3 +17,9 @@ MonoBehaviour:
     movePatterns:
     - posX: 1
       posZ: 0
+    combatPatterns:
+    - posX: 1
+      posZ: 1
+    IsMovingFullHorizontalAndVertical: 0
+    IsMovingFullSidelong: 0
+    IsKing: 0
