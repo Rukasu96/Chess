@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class King : Chessman
+public class King : Chessman, IKingable
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool canUseCastling = true;
+
+    public bool CanUseCastling()
     {
-        
+        return canUseCastling;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateCastlingStatus()
     {
-        
+        canUseCastling = false;
     }
 }

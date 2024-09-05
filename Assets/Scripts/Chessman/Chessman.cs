@@ -9,31 +9,11 @@ public class Chessman : MonoBehaviour
     protected PositionOnGrid position;
     protected TeamColor teamColor;
 
+    public ChessmanSettings ChessmanSettings => chessmanSO;
+
     private void Start()
     {
         boardManager = FindAnyObjectByType<BoardManager>();
-    }
-
-    public virtual List<Tile> GetAvailableTilesToMove()
-    {
-        List<Tile> availableTiles = new List<Tile>();
-        var movePatterns = chessmanSO.Name.movePatterns;
-
-        foreach (var movePattern in movePatterns)
-        {
-            int patternPosX = teamColor == TeamColor.white ? movePattern.posX : -movePattern.posX;
-            int patternPosZ = teamColor == TeamColor.white ? movePattern.posZ : -movePattern.posZ;
-            Tile availableTile = boardManager.ReturnTile(position.posX + patternPosX, position.posZ + patternPosZ);
-
-            if (availableTile != null)
-            {
-                if (availableTile.Chessman == null || availableTile.Chessman.GetTeamColor() != teamColor)
-                {
-                    availableTiles.Add(availableTile);
-                }
-            }
-        }
-        return availableTiles;
     }
 
     public void UpdatePositionOnGrid(int posX, int posZ)
@@ -41,9 +21,11 @@ public class Chessman : MonoBehaviour
         position.posX = posX;
         position.posZ = posZ;
     }
-    public void SetChessmanOnTile(Vector3 newPosition)
+
+    public void SetChessmanOnTile(Tile destinationTile)
     {
-        transform.position = newPosition;
+        Vector3 destination = new Vector3(destinationTile.transform.position.x, 0.5f, destinationTile.transform.position.z);
+        transform.position = destination;
     }
 
     public PositionOnGrid GetPosition()
@@ -58,5 +40,14 @@ public class Chessman : MonoBehaviour
     public void SetTeamColor(TeamColor teamColor)
     {
         this.teamColor = teamColor;
+    }
+
+    public List<PositionOnGrid> ReturnMovePatterns()
+    {
+        return chessmanSO.Name.movePatterns;
+    }
+    public List<PositionOnGrid> ReturnCombatPatterns()
+    {
+        return chessmanSO.Name.combatPatterns;
     }
 }

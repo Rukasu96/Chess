@@ -145,13 +145,17 @@ public class Board : MonoBehaviour
             {
                 tile.ChangeColor(Color.green);
 
-                if (tile.Chessman != null)
+                if (tile.Chessman is IKingable && tile.Chessman.GetTeamColor() == activePlayer)
+                {
+                    tile.ChangeColor(Color.green);
+                }
+                else if (tile.Chessman != null || (tile.IsEnPassantTile && tile.TeamColor != activePlayer))
                 {
                     tile.ChangeColor(Color.red);
                 }
                 else if (tileWithChessmanBonusMove.HasBonusMoveableChessman())
                 {
-                    if(activePlayer != tileWithChessmanBonusMove.teamColor)
+                    if(activePlayer != tileWithChessmanBonusMove.TeamColor)
                     {
                         tile.ChangeColor(Color.red);
                     }
@@ -159,8 +163,6 @@ public class Board : MonoBehaviour
             }
             else
                 tile.BackToDefaultColor();
-
-            Debug.Log(tile.Chessman);
         }
     }
 
@@ -169,39 +171,27 @@ public class Board : MonoBehaviour
         Tile previousTile = ReturnTile(selectedChessman.GetPosition().posX, selectedChessman.GetPosition().posZ);
         Chessman enemyChessman = selectedTile.Chessman;
 
-        Tile tileWithChessmanBonusMove;
-
-        if (selectedChessman.GetTeamColor() == TeamColor.white)
-        {
-            tileWithChessmanBonusMove = ReturnTile(selectedTile.PositionOnGrid.posX + 1, selectedTile.PositionOnGrid.posZ);
-        }
-        else
-        {
-            tileWithChessmanBonusMove = ReturnTile(selectedTile.PositionOnGrid.posX - 1, selectedTile.PositionOnGrid.posZ);
-        }
-
         if (enemyChessman != null)
         {
             selectedTile.Chessman = null;
             chessmanList.Remove(enemyChessman);
             Destroy(enemyChessman.gameObject);
         }
-        else if (tileWithChessmanBonusMove.HasBonusMoveableChessman())
+        else if (selectedTile.IsEnPassantTile && selectedTile.TeamColor != selectedChessman.GetTeamColor())
         {
-            Tile tileWithChessman;
-            tileWithChessmanBonusMove.RemovebonusMoveableChessman();
-
-            if (selectedChessman.GetTeamColor() == TeamColor.white)
+            Tile EnPassantTile;
+            if(selectedChessman.GetTeamColor() == TeamColor.white)
             {
-                tileWithChessman = ReturnTile(selectedTile.PositionOnGrid.posX - 1, selectedTile.PositionOnGrid.posZ);
+                EnPassantTile = ReturnTile(selectedTile.PositionOnGrid.posX - 1, selectedTile.PositionOnGrid.posZ);
             }
             else
             {
-                tileWithChessman = ReturnTile(selectedTile.PositionOnGrid.posX + 1, selectedTile.PositionOnGrid.posZ);
+                EnPassantTile = ReturnTile(selectedTile.PositionOnGrid.posX + 1, selectedTile.PositionOnGrid.posZ);
             }
 
-            enemyChessman = tileWithChessman.Chessman;
-            tileWithChessman.Chessman = null;
+            enemyChessman = EnPassantTile.Chessman;
+            enemyChessman.GetComponent<IEnPassantable>().SetEnPassantTileBackToDefault();
+            EnPassantTile.Chessman = null;
             chessmanList.Remove(enemyChessman);
             Destroy(enemyChessman.gameObject);
         }

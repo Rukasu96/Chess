@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2311140}
   - component: {fileID: 6426312}
   - component: {fileID: 2602872647024724510}
-  - component: {fileID: -3427373003362626472}
+  - component: {fileID: 6673296930447846625}
   m_Layer: 0
   m_Name: KnightBlackPrefab
   m_TagString: Selectable
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b31b805223aae4cba90c7a07108e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3427373003362626472
+--- !u!114 &6673296930447846625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 107724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac8acadf340ee841a50e378d767d7f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f27e9031c143004ba1d44aee6d96a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   chessmanSO: {fileID: 11400000, guid: 339018f6295cbc24caab97b3330eb879, type: 2}

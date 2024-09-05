@@ -4,7 +4,7 @@ using UnityEngine;
 
 interface IBonusMoveable
 {
-    bool IsOnStartingPosition();
-    bool UsedBonusMove();
-    Tile ReturnBonusTile();
+    bool HasBonusMove();
+    void UpdateSatusBonusMove();
+    PositionOnGrid ReturnBonusMovePattern();
 }

@@ -135,3 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chessmanSO: {fileID: 11400000, guid: 31dba66994730e944887e3ce33483e34, type: 2}
   boardManager: {fileID: 0}
+  bonusMovePattern:
+    posX: -2
+    posZ: 0

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3368862}
   - component: {fileID: 2311140}
   - component: {fileID: 6426312}
-  - component: {fileID: -102080734789753096}
   - component: {fileID: 2602872647024724510}
+  - component: {fileID: 7351698998190780939}
   m_Layer: 0
   m_Name: KnightWhitePrefab
   m_TagString: Selectable
@@ -109,20 +109,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 69faab6ae9c00a848a82d036ac8c75d4, type: 3}
---- !u!114 &-102080734789753096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac8acadf340ee841a50e378d767d7f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chessmanSO: {fileID: 11400000, guid: 66bb1e0b7e8ecc04aa33b13ab6a4d5f7, type: 2}
-  boardManager: {fileID: 0}
 --- !u!114 &2602872647024724510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,3 +121,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b31b805223aae4cba90c7a07108e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7351698998190780939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f27e9031c143004ba1d44aee6d96a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chessmanSO: {fileID: 11400000, guid: 66bb1e0b7e8ecc04aa33b13ab6a4d5f7, type: 2}
+  boardManager: {fileID: 0}

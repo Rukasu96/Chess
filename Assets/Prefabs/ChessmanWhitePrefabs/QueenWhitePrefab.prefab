@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2324324}
   - component: {fileID: 6463976}
   - component: {fileID: 8651947934944729773}
-  - component: {fileID: 1989656137318325955}
+  - component: {fileID: 659315559605928926}
   m_Layer: 0
   m_Name: QueenWhitePrefab
   m_TagString: Selectable
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b31b805223aae4cba90c7a07108e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1989656137318325955
+--- !u!114 &659315559605928926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 103078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8acf8579e8d472141afa955345a32295, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f27e9031c143004ba1d44aee6d96a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   chessmanSO: {fileID: 11400000, guid: f3e1c08ec0091f941aa693265968bc61, type: 2}

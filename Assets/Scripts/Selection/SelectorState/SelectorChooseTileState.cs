@@ -36,6 +36,11 @@ public class SelectorChooseTileState : SelectorBaseState
     {
         if (hoveredSelector.IsObjectHovered(out ISelectable localSelectable) && selectable != localSelectable)
         {
+            if(hoveredTile != null)
+            {
+                selectable.OnNotHover();
+            }
+
             selectable = hoveredSelector.GetHoveredObject().GetComponent<ISelectable>();
             hoveredTile = hoveredSelector.GetHoveredObject().GetComponent<Tile>();
 
