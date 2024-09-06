@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Rook : Chessman, ICastlingable
 {
     private bool canUseCastling = true;

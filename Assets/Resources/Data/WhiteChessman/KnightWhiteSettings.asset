@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: KnightWhiteSettings
   m_EditorClassIdentifier: 
   Name:
-    chessmanPrefab: {fileID: 107724, guid: d512eeabbf221464db3bfa6df1b7381a, type: 3}
-    movePatterns:
+    ChessmanPrefab: {fileID: 107724, guid: d512eeabbf221464db3bfa6df1b7381a, type: 3}
+    MovePatterns:
     - posX: 2
       posZ: 1
     - posX: 2
@@ -31,4 +31,7 @@ MonoBehaviour:
       posZ: -2
     - posX: -1
       posZ: -2
-  CanMoveAcrossTheLine: 0
+    CombatPatterns: []
+    IsMovingFullHorizontalAndVertical: 0
+    IsMovingFullSidelong: 0
+    IsKing: 0

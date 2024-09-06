@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private TeamSettings[] teamsOrder;
-
     private TeamColor activePlayer;
     private TurnController turnController;
     
@@ -15,7 +12,7 @@ public class TurnManager : MonoBehaviour
     private void Awake()
     {
         turnController = GetComponent<TurnController>();
-        activePlayer = teamsOrder[0].teamColor;
+        activePlayer = teamsOrder[0].TeamColor;
     }
 
     public void UpdatePlayer()

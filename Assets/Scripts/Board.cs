@@ -1,18 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Board : MonoBehaviour
 {
-    [SerializeField] BoardSettings settings;
+    [SerializeField] private BoardSettings settings;
     private Tile[][] chessBoard;
     private GameObject boardParent;
     private List<Chessman> chessmanList = new List<Chessman>();
-    public TeamSettings[] TeamSettings => settings.teamSettings;
+    public TeamSettings[] TeamSettings => settings.TeamSettings;
     public GameObject BoardParent => boardParent;
 
     private void Awake()
@@ -24,29 +19,30 @@ public class Board : MonoBehaviour
         boardParent = new GameObject("BoardParent");
         boardParent.transform.position = new Vector3(settings.BoardPositionX, 0f, settings.BoardPositionZ); 
 
-        chessBoard = new Tile[settings.width][];
+        chessBoard = new Tile[settings.Width][];
 
-        for (int i = 0; i < settings.width; i++)
+        for (int i = 0; i < settings.Width; i++)
         {
-            chessBoard[i] = new Tile[settings.height];
+            chessBoard[i] = new Tile[settings.Height];
         }
 
         CreateTiles();
     }
+
     private void CreateTiles()
     {
-        float tileBoardCenterOffsetX = (settings.width + settings.height) / (settings.width / 2) - settings.BoardPositionX;
-        float tileBoardCenterOffsetZ = (settings.width + settings.height) / (settings.height / 2) - settings.BoardPositionZ;
+        float tileBoardCenterOffsetX = (settings.Width + settings.Height) / (settings.Width / 2) - settings.BoardPositionX;
+        float tileBoardCenterOffsetZ = (settings.Width + settings.Height) / (settings.Height / 2) - settings.BoardPositionZ;
         Color currentColor;
         bool oddRow = false;
 
-        for (int i = 0; i < settings.width; i++)
+        for (int i = 0; i < settings.Width; i++)
         {
             currentColor = oddRow ? Color.white : Color.black;
             
-            for (int j = 0; j < settings.height; j++)
+            for (int j = 0; j < settings.Height; j++)
             {
-                Tile tileClone = Instantiate(settings.tilePrefab, new Vector3(i * settings.tileOffsetPosition - tileBoardCenterOffsetX, 0, j * settings.tileOffsetPosition - tileBoardCenterOffsetZ), Quaternion.identity);
+                Tile tileClone = Instantiate(settings.TilePrefab, new Vector3(i * settings.TileOffsetPosition - tileBoardCenterOffsetX, 0, j * settings.TileOffsetPosition - tileBoardCenterOffsetZ), Quaternion.identity);
                 tileClone.transform.SetParent(boardParent.transform);
                 tileClone.SetColor(currentColor);
 
@@ -62,16 +58,16 @@ public class Board : MonoBehaviour
     private void SetupChessman()
     {
         int chessmanIndex = 0;
-        for (int i = 0; i < settings.teamSettings.Length; i++)
+        for (int i = 0; i < settings.TeamSettings.Length; i++)
         {
-            GameObject parentTile = settings.teamSettings[i].teamColor == TeamColor.white ? new GameObject("TeamWhite") : new GameObject("TeamBlack");
+            GameObject parentTile = settings.TeamSettings[i].TeamColor == TeamColor.white ? new GameObject("TeamWhite") : new GameObject("TeamBlack");
             parentTile.transform.SetParent(boardParent.transform);
 
-            foreach (var teamChessman in settings.teamSettings[i].chessmanList)
+            foreach (var teamChessman in settings.TeamSettings[i].ChessmanList)
             {
-                foreach (var typePos in teamChessman.startingPosition)
+                foreach (var typePos in teamChessman.StartingPosition)
                 {
-                    GameObject prefab = teamChessman.type.Name.chessmanPrefab;
+                    GameObject prefab = teamChessman.Type.Name.ChessmanPrefab;
                     int posX = typePos.posX;
                     int posZ = typePos.posZ;
                     Tile tile = chessBoard[posX][posZ];
@@ -81,12 +77,12 @@ public class Board : MonoBehaviour
                     chessmanClone.transform.SetParent(parentTile.transform);
                     
                     Chessman chessman = chessmanClone.GetComponent<Chessman>();
-                    chessman.SetTeamColor(settings.teamSettings[i].teamColor);
+                    chessman.SetTeamColor(settings.TeamSettings[i].TeamColor);
                     chessman.UpdatePositionOnGrid(typePos.posX, typePos.posZ);
                     
                     tile.Chessman = chessman;
                     chessmanList.Add(chessman);
-                    settings.teamSettings[i].ChessmanDictionary.Add(tile.Chessman, chessmanIndex);
+                    settings.TeamSettings[i].ChessmanDictionary.Add(tile.Chessman, chessmanIndex);
                     chessmanIndex++;
                 }
             }
@@ -115,9 +111,9 @@ public class Board : MonoBehaviour
     {
         for (int i = 0; i < TeamSettings.Length; i++)
         {
-            if (TeamSettings[i].teamColor == activePlayer)
+            if (TeamSettings[i].TeamColor == activePlayer)
             {
-                return settings.teamSettings[i].ChessmanDictionary[chessman];
+                return settings.TeamSettings[i].ChessmanDictionary[chessman];
             }
         }
         return 0;

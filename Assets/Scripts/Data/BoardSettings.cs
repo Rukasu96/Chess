@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BoardSettings", menuName = "BoardData")]
 public class BoardSettings : ScriptableObject
 {
-    public Tile tilePrefab;
-    public TeamSettings[] teamSettings;
-    public int width;
-    public int height;
-    public float tileOffsetPosition;
+    public Tile TilePrefab;
+    public TeamSettings[] TeamSettings;
+    public int Width;
+    public int Height;
+    public float TileOffsetPosition;
     public float BoardPositionX;
     public float BoardPositionZ;
 }

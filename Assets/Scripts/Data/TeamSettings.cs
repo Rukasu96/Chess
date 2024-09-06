@@ -6,17 +6,19 @@ public enum TeamColor
     white,
     black
 }
+
 [System.Serializable]
 public struct TeamChessman
 {
-    public ChessmanSettings type;
-    public List<PositionOnGrid> startingPosition;
+    public ChessmanSettings Type;
+    public List<PositionOnGrid> StartingPosition;
     public float YrotationDegrees;
 }
+
 [CreateAssetMenu(fileName = "TeamSettings", menuName = "TeamData")]
 public class TeamSettings : ScriptableObject
 {
-    public TeamColor teamColor;
-    public List<TeamChessman> chessmanList;
+    public TeamColor TeamColor;
+    public List<TeamChessman> ChessmanList;
     public Dictionary<Chessman, int> ChessmanDictionary = new Dictionary<Chessman, int>();
 }

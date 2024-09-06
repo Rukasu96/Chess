@@ -4,9 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public struct Name
 {
-    public GameObject chessmanPrefab;
-    public List<PositionOnGrid> movePatterns;
-    public List<PositionOnGrid> combatPatterns;
+    public GameObject ChessmanPrefab;
+    public List<PositionOnGrid> MovePatterns;
+    public List<PositionOnGrid> CombatPatterns;
     public bool IsMovingFullHorizontalAndVertical;
     public bool IsMovingFullSidelong;
     public bool IsKing;

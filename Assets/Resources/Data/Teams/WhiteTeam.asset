@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd6e21b43c25f54bb3d58cb2fa99e96, type: 3}
   m_Name: WhiteTeam
   m_EditorClassIdentifier: 
-  teamColor: 0
-  chessmanList:
-  - type: {fileID: 11400000, guid: 8f3bbb8d4293a8e43b9349b74fe0f2c3, type: 2}
-    startingPosition:
+  TeamColor: 0
+  ChessmanList:
+  - Type: {fileID: 11400000, guid: 8f3bbb8d4293a8e43b9349b74fe0f2c3, type: 2}
+    StartingPosition:
     - posX: 1
       posZ: 0
     - posX: 1
@@ -33,34 +33,34 @@ MonoBehaviour:
     - posX: 1
       posZ: 7
     YrotationDegrees: 90
-  - type: {fileID: 11400000, guid: 528e3ad18ace0c341993c68029de06bc, type: 2}
-    startingPosition:
+  - Type: {fileID: 11400000, guid: 528e3ad18ace0c341993c68029de06bc, type: 2}
+    StartingPosition:
     - posX: 0
       posZ: 0
     - posX: 0
       posZ: 7
     YrotationDegrees: 90
-  - type: {fileID: 11400000, guid: 66bb1e0b7e8ecc04aa33b13ab6a4d5f7, type: 2}
-    startingPosition:
+  - Type: {fileID: 11400000, guid: 66bb1e0b7e8ecc04aa33b13ab6a4d5f7, type: 2}
+    StartingPosition:
     - posX: 0
       posZ: 1
     - posX: 0
       posZ: 6
     YrotationDegrees: 90
-  - type: {fileID: 11400000, guid: c7909cfbde0b48d41af591f38c799a61, type: 2}
-    startingPosition:
+  - Type: {fileID: 11400000, guid: c7909cfbde0b48d41af591f38c799a61, type: 2}
+    StartingPosition:
     - posX: 0
       posZ: 2
     - posX: 0
       posZ: 5
     YrotationDegrees: 90
-  - type: {fileID: 11400000, guid: f3e1c08ec0091f941aa693265968bc61, type: 2}
-    startingPosition:
+  - Type: {fileID: 11400000, guid: f3e1c08ec0091f941aa693265968bc61, type: 2}
+    StartingPosition:
     - posX: 0
       posZ: 3
     YrotationDegrees: 90
-  - type: {fileID: 11400000, guid: a4b77dc488736fb41bd6300d35026fa1, type: 2}
-    startingPosition:
+  - Type: {fileID: 11400000, guid: a4b77dc488736fb41bd6300d35026fa1, type: 2}
+    StartingPosition:
     - posX: 0
       posZ: 4
     YrotationDegrees: 90

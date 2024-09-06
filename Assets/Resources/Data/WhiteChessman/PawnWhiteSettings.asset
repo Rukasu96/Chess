@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PawnWhiteSettings
   m_EditorClassIdentifier: 
   Name:
-    chessmanPrefab: {fileID: 104878, guid: 6ca8a15090b736c42b7d433746170455, type: 3}
-    movePatterns:
+    ChessmanPrefab: {fileID: 104878, guid: 6ca8a15090b736c42b7d433746170455, type: 3}
+    MovePatterns:
     - posX: 1
       posZ: 0
-    combatPatterns:
+    CombatPatterns:
     - posX: 1
       posZ: 1
     - posX: 1

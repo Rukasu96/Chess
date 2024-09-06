@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d90f0a8a870634998970cade433453, type: 3}
   m_Name: BoardSettings
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 6948226906311353373, guid: 12d6dce8e466e3643a9cbc2a2df2b571, type: 3}
-  teamSettings:
+  TilePrefab: {fileID: 6948226906311353373, guid: 12d6dce8e466e3643a9cbc2a2df2b571, type: 3}
+  TeamSettings:
   - {fileID: 11400000, guid: 2468c6641ddf5d84c9134916c787fc8c, type: 2}
   - {fileID: 11400000, guid: 066cf6bb483994e4682f45d7b4af057a, type: 2}
-  width: 8
-  height: 8
-  tileOffsetPosition: 1.25
+  Width: 8
+  Height: 8
+  TileOffsetPosition: 1.25
   BoardPositionX: 4
   BoardPositionZ: 4

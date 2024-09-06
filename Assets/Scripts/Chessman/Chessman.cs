@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,6 +36,7 @@ public class Chessman : MonoBehaviour
     {
         return teamColor;
     }
+
     public void SetTeamColor(TeamColor teamColor)
     {
         this.teamColor = teamColor;
@@ -44,10 +44,11 @@ public class Chessman : MonoBehaviour
 
     public List<PositionOnGrid> ReturnMovePatterns()
     {
-        return chessmanSO.Name.movePatterns;
+        return chessmanSO.Name.MovePatterns;
     }
+
     public List<PositionOnGrid> ReturnCombatPatterns()
     {
-        return chessmanSO.Name.combatPatterns;
+        return chessmanSO.Name.CombatPatterns;
     }
 }

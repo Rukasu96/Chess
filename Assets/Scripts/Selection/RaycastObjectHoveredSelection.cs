@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RaycastObjectHoveredSelection : MonoBehaviour, IHoveredSelector
@@ -23,6 +21,7 @@ public class RaycastObjectHoveredSelection : MonoBehaviour, IHoveredSelector
         hoveredObject = null;
         return false;
     }
+
     public Transform GetHoveredObject()
     {
         return hoveredObject;

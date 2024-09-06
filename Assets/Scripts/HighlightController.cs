@@ -1,12 +1,11 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HighlightController : MonoBehaviour, ISelectable
 {
     private float scale;
     private float scaleTime = 0.2f;
+    private bool isSelected = false;
 
     private void Start()
     {
@@ -21,5 +20,20 @@ public class HighlightController : MonoBehaviour, ISelectable
     public void OnNotHover()
     {
         transform.DOScale(scale, 0.5f);
+    }
+
+    public void Selected()
+    {
+        isSelected = true;
+    }
+
+    public void Deselect()
+    {
+        isSelected = false;
+    }
+
+    public bool IsSelected()
+    {
+        return isSelected;
     }
 }

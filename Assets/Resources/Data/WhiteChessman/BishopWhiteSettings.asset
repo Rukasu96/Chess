@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BishopWhiteSettings
   m_EditorClassIdentifier: 
   Name:
-    chessmanPrefab: {fileID: 190264, guid: aba54b4ac43c25f418bb7591d46cb54b, type: 3}
-    movePatterns:
+    ChessmanPrefab: {fileID: 190264, guid: aba54b4ac43c25f418bb7591d46cb54b, type: 3}
+    MovePatterns:
     - posX: 8
       posZ: 8
     - posX: 8
@@ -23,6 +23,7 @@ MonoBehaviour:
       posZ: 8
     - posX: -8
       posZ: -8
+    CombatPatterns: []
     IsMovingFullHorizontalAndVertical: 0
     IsMovingFullSidelong: 1
     IsKing: 0

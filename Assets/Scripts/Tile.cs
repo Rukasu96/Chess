@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -7,13 +5,15 @@ public class Tile : MonoBehaviour
     private Renderer renderer;
     private Color defaultColor;
     private IBonusMoveable bonusMoveableChessman;
-    private bool isEnPassantTile;
     private TeamColor teamColor;
+    private bool isEnPassantTile;
+
     public Chessman Chessman;
     public PositionOnGrid PositionOnGrid;
 
     public bool IsEnPassantTile => isEnPassantTile;
     public TeamColor TeamColor => teamColor;
+
     private void Awake()
     {
         renderer = GetComponent<Renderer>();

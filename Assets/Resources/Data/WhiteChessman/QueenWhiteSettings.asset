@@ -13,10 +13,25 @@ MonoBehaviour:
   m_Name: QueenWhiteSettings
   m_EditorClassIdentifier: 
   Name:
-    chessmanPrefab: {fileID: 103078, guid: 8832f215d7ce1a5429debbe5aacd8f51, type: 3}
-    movePatterns:
+    ChessmanPrefab: {fileID: 103078, guid: 8832f215d7ce1a5429debbe5aacd8f51, type: 3}
+    MovePatterns:
     - posX: 8
       posZ: 8
+    - posX: 8
+      posZ: -8
+    - posX: -8
+      posZ: 8
+    - posX: -8
+      posZ: -8
+    - posX: 8
+      posZ: 0
+    - posX: -8
+      posZ: 0
+    - posX: 0
+      posZ: 8
+    - posX: 0
+      posZ: -8
+    CombatPatterns: []
     IsMovingFullHorizontalAndVertical: 1
     IsMovingFullSidelong: 1
     IsKing: 0

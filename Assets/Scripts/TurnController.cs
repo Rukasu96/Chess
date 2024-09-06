@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnController : MonoBehaviour
@@ -13,6 +11,6 @@ public class TurnController : MonoBehaviour
         else
             playerIndex++;
 
-        return teamsOrder[playerIndex].teamColor;
+        return teamsOrder[playerIndex].TeamColor;
     }
 }

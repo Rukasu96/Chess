@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: RookWhiteSettings
   m_EditorClassIdentifier: 
   Name:
-    chessmanPrefab: {fileID: 114028, guid: d6cb5c5f8dded36419dfeccfed09d220, type: 3}
-    movePatterns:
+    ChessmanPrefab: {fileID: 114028, guid: d6cb5c5f8dded36419dfeccfed09d220, type: 3}
+    MovePatterns:
     - posX: 8
+      posZ: 0
+    - posX: -8
+      posZ: 0
+    - posX: 0
       posZ: 8
+    - posX: 0
+      posZ: -8
+    CombatPatterns: []
     IsMovingFullHorizontalAndVertical: 1
     IsMovingFullSidelong: 0
     IsKing: 0

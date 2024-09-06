@@ -17,6 +17,10 @@ public class SelectorChooseChessmanState : SelectorBaseState
     {
         highlightedChessmanIndex = 0;
         hoveredChessmanIndex = 0;
+        if(selectable != null)
+        {
+            selectable.Deselect();
+        }
     }
 
     public override Type UpdateState()
@@ -26,6 +30,7 @@ public class SelectorChooseChessmanState : SelectorBaseState
         {
             SelectChessman(hoveredChessman);
             selectable.OnHover();
+            selectable.Selected();
             return typeof(SelectorChooseTileState);
         }
         return null;
@@ -39,7 +44,7 @@ public class SelectorChooseChessmanState : SelectorBaseState
 
             if (!boardManager.CheckChessmanTeamColor(hoveredChessman))
             {
-                if(selectable  != null)
+                if(selectable  != null && !selectable.IsSelected())
                 {
                     selectable.OnNotHover();
                     selectable = null;
@@ -50,7 +55,7 @@ public class SelectorChooseChessmanState : SelectorBaseState
 
             hoveredChessmanIndex = boardManager.GetChessmanIndex(hoveredChessman);
 
-            if (selectable != null && hoveredChessmanIndex != highlightedChessmanIndex)
+            if (selectable != null && hoveredChessmanIndex != highlightedChessmanIndex && !selectable.IsSelected())
             {
                 selectable.OnNotHover();
             }
@@ -59,7 +64,7 @@ public class SelectorChooseChessmanState : SelectorBaseState
             highlightedChessmanIndex = hoveredChessmanIndex;
             selectable.OnHover();
         }
-        else if (selectable != null && LocalSelectable == null)
+        else if (selectable != null && LocalSelectable == null && !selectable.IsSelected())
         {
             selectable.OnNotHover();
             selectable = null;

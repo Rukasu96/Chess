@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MoveManager : MonoBehaviour
 {
@@ -93,8 +89,8 @@ public class MoveManager : MonoBehaviour
     private void AddChessmanAvailableTilesToMove()
     {
         var chessmanPostion = currentChessman.GetPosition();
-        var chessmanMovePatterns = currentChessman.ChessmanSettings.Name.movePatterns;
-        var chessmanCombatPatterns = currentChessman.ChessmanSettings.Name.combatPatterns;
+        var chessmanMovePatterns = currentChessman.ChessmanSettings.Name.MovePatterns;
+        var chessmanCombatPatterns = currentChessman.ChessmanSettings.Name.CombatPatterns;
 
         if (currentChessman.ChessmanSettings.Name.IsMovingFullHorizontalAndVertical && currentChessman.ChessmanSettings.Name.IsMovingFullSidelong)
         {
@@ -199,7 +195,7 @@ public class MoveManager : MonoBehaviour
     private void AddSidelongTilesToList(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanMovePatterns)
     {
         Tile availableTile;
-        int movePatternValue = currentChessman.ChessmanSettings.Name.movePatterns[0].posX;
+        int movePatternValue = currentChessman.ChessmanSettings.Name.MovePatterns[0].posX;
 
         for (int i = 0; i < 4; i++)
         {

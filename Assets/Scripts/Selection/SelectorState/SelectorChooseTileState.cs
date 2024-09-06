@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectorChooseTileState : SelectorBaseState
@@ -36,7 +34,7 @@ public class SelectorChooseTileState : SelectorBaseState
     {
         if (hoveredSelector.IsObjectHovered(out ISelectable localSelectable) && selectable != localSelectable)
         {
-            if(hoveredTile != null)
+            if(hoveredTile != null && !selectable.IsSelected())
             {
                 selectable.OnNotHover();
             }
@@ -50,7 +48,7 @@ public class SelectorChooseTileState : SelectorBaseState
                 selectable.OnHover();
             }
         }
-        else if (selectable != null && localSelectable == null)
+        else if (selectable != null && localSelectable == null && !selectable.IsSelected())
         {
             selectable.OnNotHover();
             selectable = null;
