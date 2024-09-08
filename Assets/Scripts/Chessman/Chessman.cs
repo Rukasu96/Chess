@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class Chessman : MonoBehaviour
 {
-    [SerializeField] protected ChessmanSettings chessmanSO;
+    [SerializeField] public ChessmanSetting Setting { get; private set; }
     [SerializeField] protected BoardManager boardManager;
+
     protected PositionOnGrid position;
     protected TeamColor teamColor;
 
-    public ChessmanSettings ChessmanSettings => chessmanSO;
+    public ChessmanSetting ChessmanSettings => Setting;
+
+    public void Initialize(ChessmanSetting settings) => Setting = settings;
 
     private void Start()
     {
@@ -40,15 +43,5 @@ public class Chessman : MonoBehaviour
     public void SetTeamColor(TeamColor teamColor)
     {
         this.teamColor = teamColor;
-    }
-
-    public List<PositionOnGrid> ReturnMovePatterns()
-    {
-        return chessmanSO.Name.MovePatterns;
-    }
-
-    public List<PositionOnGrid> ReturnCombatPatterns()
-    {
-        return chessmanSO.Name.CombatPatterns;
     }
 }

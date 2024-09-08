@@ -10,9 +10,8 @@ public enum TeamColor
 [System.Serializable]
 public struct TeamChessman
 {
-    public ChessmanSettings Type;
+    public ChessmanSetting Type;
     public List<PositionOnGrid> StartingPosition;
-    public float YrotationDegrees;
 }
 
 [CreateAssetMenu(fileName = "TeamSettings", menuName = "TeamData")]

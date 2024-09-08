@@ -9,21 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494e5f7c04a0e9f419bedcda20810769, type: 3}
+  m_Script: {fileID: 11500000, guid: 177e194958629774486febdc690def2a, type: 3}
   m_Name: RookWhiteSettings
   m_EditorClassIdentifier: 
-  Name:
-    ChessmanPrefab: {fileID: 114028, guid: d6cb5c5f8dded36419dfeccfed09d220, type: 3}
-    MovePatterns:
-    - posX: 8
-      posZ: 0
-    - posX: -8
-      posZ: 0
-    - posX: 0
-      posZ: 8
-    - posX: 0
-      posZ: -8
-    CombatPatterns: []
-    IsMovingFullHorizontalAndVertical: 1
-    IsMovingFullSidelong: 0
-    IsKing: 0
+  ChessmanPrefab: {fileID: 114028, guid: d6cb5c5f8dded36419dfeccfed09d220, type: 3}
+  MovePatterns:
+  - posX: 8
+    posZ: 8
+  CombatPatterns: []
+  IsMovingFullHorizontalAndVertical: 1
+  IsMovingFullSidelong: 0
+  IsKing: 0

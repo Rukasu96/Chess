@@ -9,19 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494e5f7c04a0e9f419bedcda20810769, type: 3}
+  m_Script: {fileID: 11500000, guid: 177e194958629774486febdc690def2a, type: 3}
   m_Name: PawnBlackSettings
   m_EditorClassIdentifier: 
-  Name:
-    chessmanPrefab: {fileID: 104878, guid: 5c6a68e754e1b3b4bbc313e69a15edfe, type: 3}
-    movePatterns:
-    - posX: 1
-      posZ: 0
-    combatPatterns:
-    - posX: 1
-      posZ: 1
-    - posX: 1
-      posZ: -1
-    IsMovingFullHorizontalAndVertical: 0
-    IsMovingFullSidelong: 0
-    IsKing: 0
+  ChessmanPrefab: {fileID: 104878, guid: 5c6a68e754e1b3b4bbc313e69a15edfe, type: 3}
+  MovePatterns:
+  - posX: 1
+    posZ: 0
+  CombatPatterns:
+  - posX: 1
+    posZ: 1
+  - posX: 1
+    posZ: -1
+  IsMovingFullHorizontalAndVertical: 0
+  IsMovingFullSidelong: 0
+  IsKing: 0

@@ -2,7 +2,6 @@ public interface ISelectable
 {
     void OnHover();
     void OnNotHover();
-    void Selected();
-    void Deselect();
+    void SelectionUpdate();
     bool IsSelected();
 }

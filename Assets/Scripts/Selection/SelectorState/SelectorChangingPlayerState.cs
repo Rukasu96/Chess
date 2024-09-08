@@ -2,13 +2,15 @@ using System;
 
 public class SelectorChangingPlayerState : SelectorBaseState
 {
-    public SelectorChangingPlayerState(BoardManager board, IHoveredSelector hoveredSelector) : base(board, hoveredSelector)
+    private CameraRotator cameraRotator;
+
+    public SelectorChangingPlayerState(BoardManager board, IHoveredSelector hoveredSelector, CameraRotator cameraRotator) : base(board, hoveredSelector)
     {
+        this.cameraRotator = cameraRotator;
     }
 
     public override void EnterState()
     {
-        //Dodaæ jakiœ panel z nazw¹ kto teraz gra
     }
 
     public override void HoverObject()
@@ -17,7 +19,7 @@ public class SelectorChangingPlayerState : SelectorBaseState
 
     public override Type UpdateState()
     {
-        if(boardManager.IsRotationFinish())
+        if(cameraRotator.IsRotationFinish())
         {
             return typeof(SelectorChooseChessmanState);
         }

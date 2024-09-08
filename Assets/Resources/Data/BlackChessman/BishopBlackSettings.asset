@@ -9,20 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494e5f7c04a0e9f419bedcda20810769, type: 3}
+  m_Script: {fileID: 11500000, guid: 177e194958629774486febdc690def2a, type: 3}
   m_Name: BishopBlackSettings
   m_EditorClassIdentifier: 
-  Name:
-    chessmanPrefab: {fileID: 190264, guid: 5d0cef36088b0b542b24f15682d67e1d, type: 3}
-    movePatterns:
-    - posX: 8
-      posZ: 8
-    - posX: 8
-      posZ: -8
-    - posX: -8
-      posZ: 8
-    - posX: -8
-      posZ: -8
-    IsMovingFullHorizontalAndVertical: 0
-    IsMovingFullSidelong: 1
-    IsKing: 0
+  ChessmanPrefab: {fileID: 190264, guid: 5d0cef36088b0b542b24f15682d67e1d, type: 3}
+  MovePatterns:
+  - posX: 8
+    posZ: 8
+  CombatPatterns: []
+  IsMovingFullHorizontalAndVertical: 0
+  IsMovingFullSidelong: 1
+  IsKing: 0

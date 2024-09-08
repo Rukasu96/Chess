@@ -15,6 +15,7 @@ public class Pawn : Chessman, IBonusMoveable, IEnPassantable
     {
         return bonusMovePattern;
     }
+
     public void UpdateSatusBonusMove()
     {
         hasBonusMove = false;

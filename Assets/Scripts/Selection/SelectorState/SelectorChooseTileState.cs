@@ -14,6 +14,12 @@ public class SelectorChooseTileState : SelectorBaseState
     {
     }
 
+    private void SelectTileToMove()
+    {
+        SelectTile(hoveredTile);
+        selectable.OnNotHover();
+    }
+
     public override Type UpdateState()
     {
         HoverObject();
@@ -54,11 +60,5 @@ public class SelectorChooseTileState : SelectorBaseState
             selectable = null;
             hoveredTile = null;
         }
-    }
-
-    private void SelectTileToMove()
-    {
-        SelectTile(hoveredTile);
-        selectable.OnNotHover();
     }
 }

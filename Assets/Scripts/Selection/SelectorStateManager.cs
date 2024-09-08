@@ -7,6 +7,8 @@ public class SelectorStateManager : MonoBehaviour
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private TurnManager turnManager;
     [SerializeField] private MoveManager moveManager;
+    [SerializeField] private ChessmanDictionaryManager chessmanDictionary;
+    [SerializeField] private CameraRotator cameraRotator;
 
     private IHoveredSelector hoveredSelector;
 
@@ -19,9 +21,9 @@ public class SelectorStateManager : MonoBehaviour
 
         typeByState = new Dictionary<Type, SelectorBaseState>
         {
-            { typeof(SelectorChooseChessmanState), new SelectorChooseChessmanState(boardManager, hoveredSelector) },
+            { typeof(SelectorChooseChessmanState), new SelectorChooseChessmanState(boardManager, chessmanDictionary, hoveredSelector) },
             { typeof(SelectorChooseTileState), new SelectorChooseTileState(boardManager, hoveredSelector) },
-            { typeof(SelectorChangingPlayerState), new SelectorChangingPlayerState(boardManager, hoveredSelector) }
+            { typeof(SelectorChangingPlayerState), new SelectorChangingPlayerState(boardManager, hoveredSelector, cameraRotator) }
         };
 
         foreach (var state in typeByState.Values)
@@ -30,22 +32,6 @@ public class SelectorStateManager : MonoBehaviour
             state.OnSelectTile += State_OnSelectTile;
             state.OnBackToDefaultState += State_BackToDefault;
         }
-    }
-
-    private void State_OnSelectChessman(Chessman selectedChessman)
-    {
-        moveManager.SetCurrentChessman(selectedChessman);
-    }
-
-    private void State_OnSelectTile(Tile selectedTile)
-    {
-        moveManager.MoveChessman(selectedTile);
-        turnManager.UpdatePlayer();
-    }
-
-    private void State_BackToDefault()
-    {
-        moveManager.BackToDefault();
     }
 
     private void Start()
@@ -69,12 +55,20 @@ public class SelectorStateManager : MonoBehaviour
         SwitchState(stateType);
     }
 
-    public void SwitchState(SelectorBaseState state)
+    private void State_OnSelectChessman(Chessman selectedChessman)
     {
-        if(currentState == state) 
-            return;
-        currentState = state;
-        currentState.EnterState();
+        moveManager.SetCurrentChessman(selectedChessman);
+    }
+
+    private void State_OnSelectTile(Tile selectedTile)
+    {
+        moveManager.MoveChessman(selectedTile);
+        turnManager.UpdatePlayer();
+    }
+
+    private void State_BackToDefault()
+    {
+        moveManager.BackToDefault();
     }
 
     private void SwitchState(Type stateType)
@@ -93,5 +87,13 @@ public class SelectorStateManager : MonoBehaviour
     {
         var stateType = typeof(T);
         SwitchState(stateType);
+    }
+
+    public void SwitchState(SelectorBaseState state)
+    {
+        if (currentState == state)
+            return;
+        currentState = state;
+        currentState.EnterState();
     }
 }

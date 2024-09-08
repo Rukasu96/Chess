@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class SelectorChooseChessmanState : SelectorBaseState
 {
+    private ChessmanDictionaryManager chessmanDictionary;
     private int highlightedChessmanIndex;
     private int hoveredChessmanIndex;
     private Chessman hoveredChessman;
 
     private ISelectable selectable;
 
-    public SelectorChooseChessmanState(BoardManager board, IHoveredSelector hoverSelector) : base(board,hoverSelector)
+    public SelectorChooseChessmanState(BoardManager board, ChessmanDictionaryManager chessmanDictionaryManager ,IHoveredSelector hoverSelector) : base(board,hoverSelector)
     {
+        chessmanDictionary = chessmanDictionaryManager;
     }
 
     public override void EnterState()
@@ -19,7 +21,7 @@ public class SelectorChooseChessmanState : SelectorBaseState
         hoveredChessmanIndex = 0;
         if(selectable != null)
         {
-            selectable.Deselect();
+            selectable.SelectionUpdate();
         }
     }
 
@@ -30,7 +32,7 @@ public class SelectorChooseChessmanState : SelectorBaseState
         {
             SelectChessman(hoveredChessman);
             selectable.OnHover();
-            selectable.Selected();
+            selectable.SelectionUpdate();
             return typeof(SelectorChooseTileState);
         }
         return null;
@@ -53,7 +55,7 @@ public class SelectorChooseChessmanState : SelectorBaseState
                 return;
             }
 
-            hoveredChessmanIndex = boardManager.GetChessmanIndex(hoveredChessman);
+            hoveredChessmanIndex = chessmanDictionary.ReturnChessmanIndex(hoveredChessman, hoveredChessman.GetTeamColor());
 
             if (selectable != null && hoveredChessmanIndex != highlightedChessmanIndex && !selectable.IsSelected())
             {

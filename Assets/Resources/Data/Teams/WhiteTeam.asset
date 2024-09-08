@@ -32,21 +32,21 @@ MonoBehaviour:
       posZ: 6
     - posX: 1
       posZ: 7
-    YrotationDegrees: 90
+    YrotationDegrees: 0
   - Type: {fileID: 11400000, guid: 528e3ad18ace0c341993c68029de06bc, type: 2}
     StartingPosition:
     - posX: 0
       posZ: 0
     - posX: 0
       posZ: 7
-    YrotationDegrees: 90
+    YrotationDegrees: 0
   - Type: {fileID: 11400000, guid: 66bb1e0b7e8ecc04aa33b13ab6a4d5f7, type: 2}
     StartingPosition:
     - posX: 0
       posZ: 1
     - posX: 0
       posZ: 6
-    YrotationDegrees: 90
+    YrotationDegrees: 180
   - Type: {fileID: 11400000, guid: c7909cfbde0b48d41af591f38c799a61, type: 2}
     StartingPosition:
     - posX: 0
