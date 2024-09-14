@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pawn : Chessman, IBonusMoveable, IEnPassantable
+public class Pawn : Chessman, IBonusMoveable, IEnPassantable, IPromotable
 {
     [SerializeField] PositionOnGrid bonusMovePattern;
     private Tile enPassantTile;
@@ -39,5 +39,11 @@ public class Pawn : Chessman, IBonusMoveable, IEnPassantable
     public void SetEnPassantTileBackToDefault()
     {
         enPassantTile.UpdateEnPassantStatus();
+    }
+
+    public void Promotion(ChessmanSetting setting)
+    {
+        Initialize(setting);
+        GetComponent<MeshFilter>().mesh = setting.ChessmanPrefab.GetComponent<MeshFilter>().mesh;
     }
 }

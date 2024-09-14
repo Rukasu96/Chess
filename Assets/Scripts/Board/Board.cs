@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
+    [SerializeField] private PromotionManager promotionManager;
     [SerializeField] private BoardSpawner boardSpawner;
 
     private Tile[][] chessBoard;
@@ -84,7 +85,7 @@ public class Board : MonoBehaviour
             selectedTile.Chessman = null;
             Destroy(enemyChessman.gameObject);
         }
-        else if (selectedTile.IsEnPassantTile && selectedTile.TeamColor != selectedChessman.GetTeamColor())
+       /* else if (selectedTile.IsEnPassantTile && selectedTile.TeamColor != selectedChessman.GetTeamColor())
         {
             Tile EnPassantTile;
             if(selectedChessman.GetTeamColor() == TeamColor.white)
@@ -100,10 +101,11 @@ public class Board : MonoBehaviour
             enemyChessman.GetComponent<IEnPassantable>().SetEnPassantTileBackToDefault();
             EnPassantTile.Chessman = null;
             Destroy(enemyChessman.gameObject);
-        }
+        }*/
 
         previousTile.BackToDefaultColor();
         previousTile.Chessman = null;
         selectedTile.Chessman = selectedChessman;
+        promotionManager.CheckChessmanOnPromotionTile(selectedChessman, selectedTile);
     }
 }
