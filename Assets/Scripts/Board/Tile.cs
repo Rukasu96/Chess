@@ -18,6 +18,7 @@ public class Tile : MonoBehaviour
     {
         renderer = GetComponent<Renderer>();
     }
+
     private void Start()
     {
         tileColor = renderer.materials[0].color;

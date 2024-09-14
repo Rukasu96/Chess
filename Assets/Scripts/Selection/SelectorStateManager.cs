@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SelectorStateManager : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private TurnManager turnManager;
     [SerializeField] private MoveManager moveManager;
@@ -23,7 +24,8 @@ public class SelectorStateManager : MonoBehaviour
         {
             { typeof(SelectorChooseChessmanState), new SelectorChooseChessmanState(boardManager, chessmanDictionary, hoveredSelector) },
             { typeof(SelectorChooseTileState), new SelectorChooseTileState(boardManager, hoveredSelector) },
-            { typeof(SelectorChangingPlayerState), new SelectorChangingPlayerState(boardManager, hoveredSelector, cameraRotator) }
+            { typeof(SelectorChangingPlayerState), new SelectorChangingPlayerState(boardManager, hoveredSelector, cameraRotator, gameManager) },
+            {typeof(SelectorCheckState), new SelectorCheckState(boardManager, hoveredSelector) }
         };
 
         foreach (var state in typeByState.Values)

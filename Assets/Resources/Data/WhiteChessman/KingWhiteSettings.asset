@@ -33,4 +33,4 @@ MonoBehaviour:
   CombatPatterns: []
   IsMovingFullHorizontalAndVertical: 0
   IsMovingFullSidelong: 0
-  IsKing: 0
+  IsKing: 1

@@ -5,6 +5,7 @@ public class Chessman : MonoBehaviour
 {
     [SerializeField] public ChessmanSetting Setting { get; private set; }
     [SerializeField] protected BoardManager boardManager;
+    [SerializeField] protected GameManager gameManager;
 
     protected PositionOnGrid position;
     protected TeamColor teamColor;
@@ -16,6 +17,12 @@ public class Chessman : MonoBehaviour
     private void Start()
     {
         boardManager = FindAnyObjectByType<BoardManager>();
+        gameManager = FindAnyObjectByType<GameManager>();
+
+        if (Setting.IsKing)
+        {
+            gameManager.SetKing(this);
+        }
     }
 
     public void UpdatePositionOnGrid(int posX, int posZ)

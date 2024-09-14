@@ -59,13 +59,13 @@ public class Board : MonoBehaviour
                 }
                 else if (tile.Chessman != null || (tile.IsEnPassantTile && tile.TeamColor != activePlayer))
                 {
-                    tile.ChangeColor(Color.red);
+                    tile.ChangeColor(Color.yellow);
                 }
                 else if (tileWithChessmanBonusMove.HasBonusMoveableChessman())
                 {
                     if(activePlayer != tileWithChessmanBonusMove.TeamColor)
                     {
-                        tile.ChangeColor(Color.red);
+                        tile.ChangeColor(Color.yellow);
                     }
                 }
             }
@@ -102,6 +102,7 @@ public class Board : MonoBehaviour
             Destroy(enemyChessman.gameObject);
         }
 
+        previousTile.BackToDefaultColor();
         previousTile.Chessman = null;
         selectedTile.Chessman = selectedChessman;
     }

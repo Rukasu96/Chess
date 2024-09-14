@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MoveManager : MonoBehaviour
 {
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private TurnManager turnManager;
+    [SerializeField] private CheckTileStatusController statusController;
 
     private List<Tile> availableTiles = new List<Tile>();
     private Chessman currentChessman;
@@ -23,7 +25,6 @@ public class MoveManager : MonoBehaviour
         movingChessman.UpdatePositionOnGrid(destinationTile.PositionOnGrid.posX, destinationTile.PositionOnGrid.posZ);
         movingChessman.SetChessmanOnTile(destinationTile);
         boardManager.ChangeBoardTileColor(availableTiles);
-        availableTiles.Clear();
 
         if (currentChessman is IBonusMoveable)
         {
@@ -50,34 +51,35 @@ public class MoveManager : MonoBehaviour
 
         if (currentChessman.ChessmanSettings.IsMovingFullHorizontalAndVertical && currentChessman.ChessmanSettings.IsMovingFullSidelong)
         {
-            AddHorizontalAndVerticalTilesToList(chessmanPostion, chessmanMovePatterns);
-            AddSidelongTilesToList(chessmanPostion, chessmanMovePatterns);
+            AddHorizontalAndVerticalTilesToList(chessmanPostion, chessmanMovePatterns, false);
+            AddSidelongTilesToList(chessmanPostion, chessmanMovePatterns, false);
         }
         else if (currentChessman.ChessmanSettings.IsMovingFullHorizontalAndVertical)
         {
-            AddHorizontalAndVerticalTilesToList(chessmanPostion, chessmanMovePatterns);
+            AddHorizontalAndVerticalTilesToList(chessmanPostion, chessmanMovePatterns, false);
         }
         else if (currentChessman.ChessmanSettings.IsMovingFullSidelong)
         {
-            AddSidelongTilesToList(chessmanPostion, chessmanMovePatterns);
+            AddSidelongTilesToList(chessmanPostion, chessmanMovePatterns, false);
         }
         else
         {
-            AddMovePatternTiles(chessmanPostion, chessmanMovePatterns);
+            AddMovePatternTiles(chessmanPostion, chessmanMovePatterns, false);
         }
 
         if (chessmanCombatPatterns.Count > 0)
         {
-            AddCombatPatternTiles(chessmanPostion, chessmanCombatPatterns);
+            AddCombatPatternTiles(chessmanPostion, chessmanCombatPatterns, false);
         }
     }
 
-    private void AddHorizontalAndVerticalTilesToList(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanMovePatterns)
+    private void AddHorizontalAndVerticalTilesToList(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanMovePatterns, bool isChecktile)
     {
         Tile availableTile;
         int modifierX = 1;
         int modifierZ = 0;
         int movePatternValue = chessmanMovePatterns[0].posX;
+        bool hasToAddTileWithChessman = isChecktile;
 
         for (int i = 0; i < 4; i++)
         {
@@ -99,7 +101,11 @@ public class MoveManager : MonoBehaviour
 
                 if (availableTile.Chessman != null)
                 {
-                    if (availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer)
+                    if(availableTile.Chessman is IKingable && hasToAddTileWithChessman)
+                    {
+                        availableTiles.Add(availableTile);
+                    }
+                    else if (availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer || hasToAddTileWithChessman)
                     {
                         availableTiles.Add(availableTile);
                         break;
@@ -148,10 +154,11 @@ public class MoveManager : MonoBehaviour
         }
     }
 
-    private void AddSidelongTilesToList(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanMovePatterns)
+    private void AddSidelongTilesToList(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanMovePatterns, bool isChecktile)
     {
         Tile availableTile;
-        int movePatternValue = currentChessman.ChessmanSettings.MovePatterns[0].posX;
+        int movePatternValue = chessmanMovePatterns[0].posX;
+        bool hasToAddTileWithChessman = isChecktile;
 
         for (int i = 0; i < 4; i++)
         {
@@ -191,7 +198,11 @@ public class MoveManager : MonoBehaviour
 
                 if (availableTile.Chessman != null)
                 {
-                    if (availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer)
+                    if (availableTile.Chessman is IKingable && hasToAddTileWithChessman)
+                    {
+                        availableTiles.Add(availableTile);
+                    }
+                    else if (availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer || hasToAddTileWithChessman)
                     {
                         availableTiles.Add(availableTile);
                         break;
@@ -207,10 +218,11 @@ public class MoveManager : MonoBehaviour
         }
     }
 
-    private void AddMovePatternTiles(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanMovePatterns)
+    private void AddMovePatternTiles(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanMovePatterns, bool isChecktile)
     {
         Tile availableTile;
         IBonusMoveable bonusMoveable = currentChessman.GetComponent<IBonusMoveable>();
+        bool hasToAddTileWithChessman = isChecktile;
 
         foreach (var movePattern in chessmanMovePatterns)
         {
@@ -220,7 +232,26 @@ public class MoveManager : MonoBehaviour
 
             if (availableTile != null)
             {
-                if (availableTile.Chessman == null || (availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer && !(currentChessman is Pawn)))
+                if (currentChessman.ChessmanSettings.IsKing)
+                {
+                    if (!statusController.IsTileInList(availableTile, currentChessman.GetTeamColor()))
+                    {
+                        if(availableTile.Chessman == null)
+                        {
+                            availableTiles.Add(availableTile);
+                        }
+                        else if(availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer)
+                        {
+                            availableTiles.Add(availableTile);
+                        }
+                    }
+                }
+                else if (availableTile.Chessman == null)
+                {
+                    availableTiles.Add(availableTile);
+                }
+                else if (availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer && !(currentChessman is Pawn) ||
+                    (currentChessman is Pawn) && hasToAddTileWithChessman)
                 {
                     availableTiles.Add(availableTile);
                 }
@@ -238,8 +269,10 @@ public class MoveManager : MonoBehaviour
         }
     }
 
-    private void AddCombatPatternTiles(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanCombatPatterns)
+    private void AddCombatPatternTiles(PositionOnGrid currentChessmanPosition, List<PositionOnGrid> chessmanCombatPatterns, bool isChecktile)
     {
+        bool hasToAddTileWithChessman = isChecktile;
+
         foreach (var combatPattern in chessmanCombatPatterns)
         {
             int patternPosX = turnManager.ActivePlayer == TeamColor.white ? combatPattern.posX : -combatPattern.posX;
@@ -252,12 +285,47 @@ public class MoveManager : MonoBehaviour
                 {
                     availableTiles.Add(availableTile);
                 }
-                else if (availableTile.Chessman != null && availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer)
+                else if ((availableTile.Chessman != null && availableTile.Chessman.GetTeamColor() != turnManager.ActivePlayer) || hasToAddTileWithChessman)
                 {
                     availableTiles.Add(availableTile);
                 }
             }
         }
+    }
+
+    private void UpdateStatusControllerCombatTiles()
+    {
+        statusController.RemoveOldCheckTiles(availableTiles, currentChessman);
+        availableTiles.Clear();
+
+        var chessmanPostion = currentChessman.GetPosition();
+        var chessmanMovePatterns = currentChessman.ChessmanSettings.MovePatterns;
+        var chessmanCombatPatterns = currentChessman.ChessmanSettings.CombatPatterns;
+
+        if (chessmanCombatPatterns.Count > 0)
+        {
+            AddCombatPatternTiles(chessmanPostion, chessmanCombatPatterns, true);
+        }
+        else if (currentChessman.ChessmanSettings.IsMovingFullHorizontalAndVertical && currentChessman.ChessmanSettings.IsMovingFullSidelong)
+        {
+            AddHorizontalAndVerticalTilesToList(chessmanPostion, chessmanMovePatterns, true);
+            AddSidelongTilesToList(chessmanPostion, chessmanMovePatterns, true);
+        }
+        else if (currentChessman.ChessmanSettings.IsMovingFullHorizontalAndVertical)
+        {
+            AddHorizontalAndVerticalTilesToList(chessmanPostion, chessmanMovePatterns, true);
+        }
+        else if (currentChessman.ChessmanSettings.IsMovingFullSidelong)
+        {
+            AddSidelongTilesToList(chessmanPostion, chessmanMovePatterns, true);
+        }
+        else
+        {
+            AddMovePatternTiles(chessmanPostion, chessmanMovePatterns, true);
+        }
+
+        statusController.AddTileToCheckList(availableTiles, currentChessman);
+        availableTiles.Clear();
     }
 
     public void BackToDefault()
@@ -303,5 +371,7 @@ public class MoveManager : MonoBehaviour
         {
             UpdateMove(selectedTile, currentChessman);
         }
+
+        UpdateStatusControllerCombatTiles();
     }
 }
